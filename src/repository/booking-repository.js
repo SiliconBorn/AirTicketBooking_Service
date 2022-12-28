@@ -22,7 +22,21 @@ class BookingRepository{
     }
 
 
-  
+    async update(){
+
+
+        try {
+            
+            
+        } catch (error) {
+            
+            if(error.name==='SequelizeValidationError'){
+                throw new ValidationError(error)
+            }
+            throw new AppError('RepositoryError',
+            'Cannot update Booking','There was some issue in creating the booking ,please try again later',StatusCodes.INTERNAL_SERVER_ERROR)
+        }
+    }
 
 }
 
