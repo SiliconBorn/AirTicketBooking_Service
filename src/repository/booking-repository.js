@@ -26,13 +26,21 @@ class BookingRepository{
 
 
         try {
-             
-            await Booking.update(data,{
-                where:{
-                    id:bookingId
-                }
-            })
-            return true;
+
+            const booking = await Booking.findByPk(bookingId)
+
+            if(data.status){
+                booking.status= data.status
+            } 
+            //doesnt return us anything so above method used
+            // await Booking.update(data,{
+            //     where:{
+            //         id:bookingId
+            //     }
+            // })
+            await booking.save()
+            return booking;
+           
         } catch (error) {
             
             if(error.name==='SequelizeValidationError'){
