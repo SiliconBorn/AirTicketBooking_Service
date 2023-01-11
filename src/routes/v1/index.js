@@ -4,8 +4,11 @@ const router = express.Router()
 
 
 
-router.post('/bookings',BookingController.create)
+const bookingController = new BookingController()
 
+router.post('/bookings',bookingController.create)
+
+router.post('/publish',bookingController.sendMessageToQueue)
 
 
 
